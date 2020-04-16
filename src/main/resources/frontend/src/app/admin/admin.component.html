@@ -1,0 +1,16 @@
+<mat-tab-group>
+    <mat-tab label="Users">
+        <crud-table [loadData]="loadUserData" [model]="userDataModel" [deleteDialog]="deleteDialog"
+            [addDialog]="createEditUserDialog" [editDialog]="createEditUserDialog"></crud-table>
+    </mat-tab>
+    <mat-tab label="Stories">
+        <crud-table [loadData]="loadStoryData" [model]="storyDataModel" [deleteDialog]="deleteDialog"
+            [addDialog]="createEditStoryDialog" [editDialog]="createEditStoryDialog"></crud-table>
+    </mat-tab>
+    <mat-tab label="Purchases">
+        //TODO
+    </mat-tab>
+    <mat-tab label="Ratings">
+        //TODO
+    </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,43 @@
+:host {
+  flex: 1;
+  position: relative;
+}
+
+.story_list_view_block {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.story_list_view {
+  display: flex;
+  flex-direction: row;
+}
+
+.story_createdDate {
+  color: #aaa;
+}
+
+.story_title {
+  margin: 10px;
+  font-size: 250%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.story_author {
+  margin: 10px;
+}
+
+.green {
+  background: green;
+  color: white;
+}
+
+.red {
+  background: crimson;
+  color: white;
+}

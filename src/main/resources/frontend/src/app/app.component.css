@@ -1,0 +1,27 @@
+mat-sidenav {
+  width: 300px;
+  display: flex;
+}
+
+mat-sidenav-container {
+  flex: 1;
+}
+
+mat-sidenav-content {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  font-size: 200%;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

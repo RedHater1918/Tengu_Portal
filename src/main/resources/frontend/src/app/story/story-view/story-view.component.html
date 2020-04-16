@@ -1,0 +1,11 @@
+<div class="story-header">
+  <h1 *ngIf="story" style="display: inline;">{{story.title}}</h1>
+  <i *ngIf="story">&nbsp;by {{story.author.nickName}}</i>
+  <br>
+  <mat-star-rating [rating]="rating" [starCount]="starCount" (ratingUpdated)="onRatingChanged($event)">
+  </mat-star-rating>
+</div>
+
+<!-- paging? -->
+<hr style="width: 99%">
+<div #storyViewTextElement></div>

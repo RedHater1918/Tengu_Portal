@@ -1,0 +1,33 @@
+<div class="story_list_view">
+  <div class="story_list_view_block" style="flex: none; flex-direction: row">
+    <button mat-fab color="primary">
+      {{story.price}}
+    </button>
+    <button mat-fab color="primary" style="margin-left: 5px;" (click)="edit(story.id)">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+
+  <div class="story_list_view_block" style="flex: 2">
+    <h1 class="story_title">
+      <a *ngIf="story.purchased; else elseBlock1" routerLink="/stories/{{story.id}}"
+        routerLinkActive="active">{{story.title}}</a>
+      <ng-template #elseBlock1><span>{{story.title}}</span></ng-template>
+    </h1>
+    <span class="story_author"><i>By {{story.author.nickName}}</i></span>
+  </div>
+
+  <div class="story_list_view_block" style="flex-direction: row; justify-content: space-between;">
+    <mat-chip-list aria-label="Fish selection">
+      <mat-chip *ngIf="story.purchased || story.author.id == userService.currentUser.id; else elseBlock2" class="green">
+        Purchased</mat-chip>
+      <ng-template #elseBlock2>
+        <mat-chip class="red" (click)="buy(story.id)">Not Purchased</mat-chip>
+      </ng-template>
+    </mat-chip-list>
+    <span class="story_rating">
+      <rating rate="{{story.rating}}"></rating>
+    </span>
+    <span class="story_createdDate">{{story.createdDate}}</span>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="main">
+    <mat-header-cell *matHeaderCellDef>
+      Main
+    </mat-header-cell>
+    <mat-cell *matCellDef="let operator">
+      <story-list-view [story]="operator"></story-list-view>
+    </mat-cell>
+  </ng-container>
+
+  <mat-row *matRowDef="let row; columns: ['main']"></mat-row>
+
+</mat-table>
+
+<mat-paginator [pageSize]="10" [pageSizeOptions]="[10,20,50]"></mat-paginator>

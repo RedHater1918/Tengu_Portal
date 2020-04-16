@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+  <button mat-button [disabled]="!token.getToken()">
+    <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+  </button>
+  Tengu's Feather
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side">
+    <button type="button" mat-raised-button color="primary" style="width: 85%; margin: 10px;" (click)="navigate('/')">
+      <mat-icon>home</mat-icon>
+    </button>
+    <button [disabled]="userService.currentUser && userService.currentUser.role == 'READER'" type="button" mat-raised-button color="primary" style="width: 85%; margin: 10px;"
+      (click)="navigate('/editor')">
+      +
+    </button>
+    <user-view *ngIf="userService.currentUser"></user-view>
+    <button [disabled]="userService.currentUser && (userService.currentUser.role == 'READER' || userService.currentUser.role == 'AUTHOR')" type="button" mat-raised-button color="primary" style="width: 85%; margin: 10px;"
+      (click)="navigate('/admin')">
+      <mat-icon>emoji_objects</mat-icon>
+    </button>
+    <button type="button" mat-raised-button color="primary" style="width: 85%; margin: 10px;"
+      (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

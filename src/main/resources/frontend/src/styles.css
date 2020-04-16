@@ -1,0 +1,22 @@
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+html,
+body {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.mat-drawer-inner-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.mat-dialog-container {
+  display: flex !important;
+}
