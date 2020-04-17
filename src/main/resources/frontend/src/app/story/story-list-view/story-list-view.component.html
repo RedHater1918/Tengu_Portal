@@ -3,7 +3,8 @@
     <button mat-fab color="primary">
       {{story.price}}
     </button>
-    <button mat-fab color="primary" style="margin-left: 5px;" (click)="edit(story.id)">
+    <button *ngIf="story.author.id == userService.currentUser.id" mat-fab color="primary" style="margin-left: 5px;"
+      (click)="edit(story.id)">
       <mat-icon>edit</mat-icon>
     </button>
   </div>

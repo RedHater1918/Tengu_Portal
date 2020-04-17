@@ -113,6 +113,9 @@ public class UserController {
     public User saveStory(@RequestBody User user){
         user.setRegistrationDate(LocalDate.now());
 
+        if(user.getPassword() == null || user.getPassword().isEmpty())
+            user.setPassword(encoder.encode("123"));
+
         return this.userService.save(user);
     }
 

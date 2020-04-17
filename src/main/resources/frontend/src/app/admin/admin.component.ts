@@ -67,5 +67,7 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.userService.currentUser.role);
+  }
 }

@@ -44,7 +44,7 @@ public class StoryController {
                 .body(story.get());
     }
 
-    @PostMapping("/savePurchase")
+    @PostMapping("/save")
     public Story saveStory(@RequestBody Story story){
         story.setCreatedDate(LocalDate.now());
 

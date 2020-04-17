@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit, Inject, Optional } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Story } from "../story.model";
 import { StoryService } from "../story.service";
@@ -21,7 +21,7 @@ export class StoryAddComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
-    @Inject(MAT_DIALOG_DATA) public dialog_data: any
+    @Optional() @Inject(MAT_DIALOG_DATA) public dialog_data: any = {}
   ) {}
 
   ngOnInit() {
@@ -30,6 +30,7 @@ export class StoryAddComponent implements OnInit {
       title: ["", Validators.required],
       price: [0, [Validators.required, Validators.min(0)]],
       text: ["", Validators.required],
+      author: [""],
     });
 
     if (this.route.params["value"]["id"]) {
@@ -40,6 +41,7 @@ export class StoryAddComponent implements OnInit {
           this.newStoryForm.get("title").setValue(data.title);
           this.newStoryForm.get("price").setValue(data.price);
           this.newStoryForm.get("text").setValue(data.text);
+          this.newStoryForm.get("author").setValue(data.author);
         });
     } else if (this.dialog_data && this.dialog_data["id"]) {
       this.storyService
@@ -49,6 +51,7 @@ export class StoryAddComponent implements OnInit {
           this.newStoryForm.get("title").setValue(data.title);
           this.newStoryForm.get("price").setValue(data.price);
           this.newStoryForm.get("text").setValue(data.text);
+          this.newStoryForm.get("author").setValue(data.author);
         });
     }
   }
@@ -56,7 +59,7 @@ export class StoryAddComponent implements OnInit {
 
   saveStory(value) {
     let result = new Story();
-    result.author = this.userService.currentUser;
+    result.author = value.author ? value.author : this.userService.currentUser;
     result.price = value.price;
     result.id = value.id;
     result.title = value.title;

@@ -3,7 +3,7 @@ import {
   CanActivate,
   Router,
   ActivatedRouteSnapshot,
-  RouterStateSnapshot
+  RouterStateSnapshot,
 } from "@angular/router";
 import { TokenStorageService } from "./token-storage.service";
 
@@ -17,8 +17,8 @@ export class AuthGuardService implements CanActivate {
     } else {
       this.router.navigate(["/signin"], {
         queryParams: {
-          return: state.url
-        }
+          return: state.url,
+        },
       });
       return false;
     }
