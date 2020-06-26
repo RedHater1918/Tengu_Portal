@@ -6,24 +6,33 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
 @Data
 //@AllArgsConstructor
 public class Story {
+
     @Id
     @GeneratedValue
     private UUID id;
+
     private String title;
+
     @Lob
     private String text;
+
     @JsonFormat(pattern = "MM/dd/yyyy")
     private LocalDate createdDate;
 
+    private int price;
+
     @ManyToOne
     private User author;
-    private int price;
+
+    @OneToMany
+    private Set<PriceRate> priceRates;
 
     public Story(){}
 

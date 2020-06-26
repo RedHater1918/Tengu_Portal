@@ -2,6 +2,10 @@
   <h1 *ngIf="story" style="display: inline;">{{story.title}}</h1>
   <i *ngIf="story">&nbsp;by {{story.author.nickName}}</i>
   <br>
+  <select [(ngModel)]="valueRate" (change)="onPriceRateChanged($event)">
+  <option value="null">Дайте оценку стоимости</option> 
+<option *ngFor="let rate of fibArray" (value)="rate">{{rate}}</option>
+</select>
   <mat-star-rating [rating]="rating" [starCount]="starCount" (ratingUpdated)="onRatingChanged($event)">
   </mat-star-rating>
 </div>

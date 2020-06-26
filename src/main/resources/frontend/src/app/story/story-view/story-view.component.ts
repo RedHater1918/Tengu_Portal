@@ -35,13 +35,19 @@ export class StoryViewComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {}
-
+  valueRate:number = 0;
+  fibArray:number[]=[1, 2, 3, 5, 8, 13, 21, 34, 55];
   rating: number = 0;
   starCount: number = 5;
 
   onRatingChanged(rating) {
     this.rating = rating;
     this.userService.rate(this.story.id, rating).subscribe((s: any) => {
+      console.log(s);
+    });
+  }
+  onPriceRateChanged() {
+    this.userService.rateStoryPrice(this.story.id, this.valueRate).subscribe((s: any) => {
       console.log(s);
     });
   }

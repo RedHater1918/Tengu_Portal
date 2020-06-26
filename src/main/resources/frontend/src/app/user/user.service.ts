@@ -46,9 +46,12 @@ export class UserService {
 
   rate(storyId, value) {
     console.log(storyId, value);
-    return this.http.get(
-      `/api/operations/rate/${this.currentUser.id}/${storyId}/${value}`
+    return this.http.get(`/api/operations/rate/${this.currentUser.id}/${storyId}/${value}`
     );
+  }
+  rateStoryPrice(storyId,value){
+    console.log(storyId, value);
+    return this.http.get(`/api/stories/save/priceRate/${this.currentUser.id}/${storyId}/${value}`);
   }
 
   loadUsers() {
