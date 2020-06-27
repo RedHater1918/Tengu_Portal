@@ -26,17 +26,14 @@ public class Story {
     @JsonFormat(pattern = "MM/dd/yyyy")
     private LocalDate createdDate;
 
-    private int price;
+    private double price;
 
     @ManyToOne
     private User author;
 
-    @OneToMany
-    private Set<PriceRate> priceRates;
-
     public Story(){}
 
-    public Story(UUID randomUUID, String title, String text, LocalDate date, User author, int price) {
+    public Story(UUID randomUUID, String title, String text, LocalDate date, User author, double price) {
         this.id = randomUUID;
         this.title = title;
         this.text = text;
