@@ -26,7 +26,7 @@ public class Story {
     @JsonFormat(pattern = "MM/dd/yyyy")
     private LocalDate createdDate;
 
-    private double price;
+    private int price;
 
     @ManyToOne
     private User author;
