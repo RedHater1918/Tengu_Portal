@@ -36,7 +36,7 @@ export class StoryViewComponent implements AfterViewInit {
 
   ngAfterViewInit() {}
   valueRate:number = 0;
-  fibArray:number[]=[1, 2, 3, 5, 8, 13, 21, 34, 55];
+  fibArray:number[]=[1, 2, 3, 5, 8, 13, 21];
   rating: number = 0;
   starCount: number = 5;
 

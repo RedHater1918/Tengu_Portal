@@ -56,6 +56,7 @@ public class StoryController {
     @GetMapping("/save/priceRate/{authorId}/{storyId}/{rateValue}")
     public ResponseEntity<?> saveValueRating(@PathVariable UUID authorId, @PathVariable UUID storyId, @PathVariable int rateValue){
         PriceRate priceRate = storyService.getPriceRate(authorId, storyId);
+        Story story = this.storyService.findById(storyId).get();
         if(priceRate == null){
             priceRate = new PriceRate
                     (UUID.randomUUID(),
@@ -64,34 +65,11 @@ public class StoryController {
                             rateValue);
         } else {
             priceRate.setRate(rateValue);
-
         }
         this.storyService.savePriceRate(priceRate);
-
+        story.setPrice(this.storyService.avgStoryPrice(storyId));
+        this.storyService.save(story);
 
         return new ResponseEntity<>(new ResponseMessage("Rated successfully!"), HttpStatus.OK);
-    }
-
-
-    @GetMapping("/get/rate/{storyId}")
-    public int getValueRate(@PathVariable UUID storyId){
-        int min = 0;
-        int max = 0;
-        int[] fibArray = new int[] {1, 2, 3, 5, 8, 13, 21, 34, 55};
-        double rate = storyService.avgStoryPrice(storyId);
-        for(int fib:fibArray){
-            if(rate>fib){
-               min = fib;
-            }else if(fib>rate){
-                max = fib;
-            }else{
-                return fib;
-            }
-        }
-        if((rate-min)>(max-rate)){
-            return  max;
-        }else{
-            return min;
-        }
     }
 }

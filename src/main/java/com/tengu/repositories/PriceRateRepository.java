@@ -18,4 +18,5 @@ public interface PriceRateRepository extends CrudRepository<PriceRate, UUID> {
 
     @Query("SELECT avg(rate) from PriceRate where storyId=:storyId")
     double fingAVGPrice(@Param("storyId")UUID storyId);
+
 }

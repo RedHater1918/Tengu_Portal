@@ -15,5 +15,5 @@ public interface StoryService {
     Story save(Story story);
     PriceRate savePriceRate(PriceRate priceRate);
     PriceRate getPriceRate(UUID authorId,UUID storyId);
-    double avgStoryPrice(UUID storyId);
+    int avgStoryPrice(UUID storyId);
 }

@@ -33,7 +33,7 @@ public class Story {
 
     public Story(){}
 
-    public Story(UUID randomUUID, String title, String text, LocalDate date, User author, double price) {
+    public Story(UUID randomUUID, String title, String text, LocalDate date, User author, int price) {
         this.id = randomUUID;
         this.title = title;
         this.text = text;

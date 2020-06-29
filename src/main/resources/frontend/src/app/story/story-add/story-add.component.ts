@@ -14,6 +14,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 export class StoryAddComponent implements OnInit {
   newStoryForm: FormGroup;
   story: Story;
+  fibArray:number[]=[1, 2, 3, 5, 8, 13, 21];
 
   constructor(
     private formbuilder: FormBuilder,
@@ -65,8 +66,12 @@ export class StoryAddComponent implements OnInit {
     result.title = value.title;
     result.text = value.text;
     result.rating = 0;
-    this.storyService.saveStory(result).subscribe((s) => {
-      this.router.navigateByUrl("/");
+    
+    this.storyService.saveStory(result).subscribe((s:Story) => {
+      this.userService.rateStoryPrice(s.id,s.price).subscribe((p: any) => {
+        this.router.navigateByUrl("/");
+      });
     });
+    
   }
 }

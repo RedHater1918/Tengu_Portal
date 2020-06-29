@@ -2,12 +2,10 @@ package com.tengu.services;
 
 import com.tengu.models.PriceRate;
 import com.tengu.models.Story;
-import com.tengu.models.User;
 import com.tengu.models.projections.RatedProjection;
 import com.tengu.models.projections.StoryProjection;
 import com.tengu.repositories.PriceRateRepository;
 import com.tengu.repositories.StoryRepository;
-import com.tengu.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,7 +47,7 @@ public class StoryServiceImpl implements StoryService {
 
     @Override
     public PriceRate savePriceRate(PriceRate priceRate) {
-        return priceRateRepository.save(priceRate);
+        return this.priceRateRepository.save(priceRate);
     }
 
     @Override
@@ -58,8 +56,26 @@ public class StoryServiceImpl implements StoryService {
     }
 
     @Override
-    public double avgStoryPrice(UUID storyId) {
-        return this.priceRateRepository.fingAVGPrice(storyId);
+    public int avgStoryPrice(UUID storyId) {
+        double rate = this.priceRateRepository.fingAVGPrice(storyId);
+        int min = 0;
+        int max = 0;
+        int[] fibArray = new int[] {1, 2, 3, 5, 8, 13, 21};
+        for(int fib:fibArray){
+            if(rate>fib){
+                min = fib;
+            }else if(fib>rate){
+                max = fib;
+                break;
+            }else{
+                return fib;
+            }
+        }
+        if((rate-min)>(max-rate)){
+            return  max;
+        }else {
+            return min;
+        }
     }
 
 }
