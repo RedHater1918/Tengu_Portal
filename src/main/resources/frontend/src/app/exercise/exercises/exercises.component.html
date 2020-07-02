@@ -1,0 +1,24 @@
+
+<div style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
+  <select [(ngModel)]="status">
+    <option value=null>Выберите фильтр статуса</option> 
+  <option *ngFor="let st of statuses" (value)="st">{{st}}</option>
+  </select>
+  <button (click)="changeStatus(status)">Применить</button>
+</div>
+<mat-table [dataSource]="dataSource" style="width:100%;">
+    <ng-container matColumnDef="main">
+      <mat-header-cell *matHeaderCellDef>
+        Main
+      </mat-header-cell>
+      <mat-cell *matCellDef="let operator">
+        <app-exercise-list [exercise]="operator"></app-exercise-list>
+      </mat-cell>
+    </ng-container>
+  
+    <mat-row *matRowDef="let row; columns: ['main']"></mat-row>
+  
+  </mat-table>
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[10,20,50]"></mat-paginator>
+  
+  

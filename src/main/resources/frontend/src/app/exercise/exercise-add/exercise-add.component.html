@@ -1,0 +1,21 @@
+<form [formGroup]="newExerciseForm" class="story-form" (ngSubmit)="save(newExerciseForm.value)">
+    <div class="header">
+      <mat-form-field class="title">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" required />
+      </mat-form-field>
+      <div class="price">
+        <mat-label>Price</mat-label>
+        <select matInput formControlName="price" (mousewheel)="onScroll($event)">
+          <option value="null">Дайте оценку стоимости</option> 
+        <option *ngFor="let rate of fibArray" (value)="rate">{{rate}}</option>
+        </select>
+      </div>
+    </div>
+    <div>
+        <textarea *ngIf="newExerciseForm.get('description')" formControlName="description" ngMaxlength=256 required></textarea>
+    </div>
+     <button class="submit-button" mat-fab color="primary" type="submit">
+      <mat-icon>done</mat-icon>
+    </button>
+  </form>

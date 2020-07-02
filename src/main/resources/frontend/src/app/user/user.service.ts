@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class UserService {
   public currentUser: User;
-
+  status:string[]=["DONE","TAKEN"];
   private loginUrl = "/api/users/auth/signin";
   private signupUrl = "/api/users/auth/signup";
 
@@ -53,7 +53,13 @@ export class UserService {
     console.log(storyId, value);
     return this.http.get(`/api/stories/save/priceRate/${this.currentUser.id}/${storyId}/${value}`);
   }
-
+  actWithExrcise(exerciseId:string, status:number){
+    console.log(this.currentUser.id,exerciseId,status);
+    return this.http.get(`/api/exercise/save/exerciseComp/${this.currentUser.id}/${exerciseId}/${this.status[status]}`);
+  }
+  getExerciseByStatus(status){
+    return this.http.get(`/api/exercise/getByStat/${this.currentUser.id}/${this.status[status]}`);
+  }
   loadUsers() {
     return this.http.get("/api/users/");
   }

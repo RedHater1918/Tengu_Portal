@@ -18,7 +18,7 @@ export class StoryListViewComponent {
   }
 
   edit(id) {
-    this.router.navigateByUrl(`editor/${this.story.id}`);
+    this.router.navigateByUrl(`editor/story/${this.story.id}`);
   }
 
   constructor(public userService: UserService, private router: Router) {}

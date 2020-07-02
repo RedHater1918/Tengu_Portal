@@ -14,8 +14,10 @@ import java.util.UUID;
 
 @Service
 public class StoryServiceImpl implements StoryService {
+
     private StoryRepository storyRepository;
     private PriceRateRepository priceRateRepository;
+
     public StoryServiceImpl(StoryRepository storyRepository,PriceRateRepository priceRateRepository){
         this.storyRepository = storyRepository;
         this.priceRateRepository = priceRateRepository;

@@ -25,6 +25,11 @@ import { EditComponent } from "./shared/rating/edit/edit.component";
 import { CrudTableComponent } from "./shared/crud-table/crud-table.component";
 import { DeleteDialogComponent } from "./shared/delete/delete.dialog.component";
 import { UserEditComponent } from "./user/user-edit/user-edit.component";
+import { ExerciseAddComponent } from './exercise/exercise-add/exercise-add.component';
+import { ExerciseViewComponent } from './exercise/exercise-view/exercise-view.component';
+import { ExercisesComponent } from './exercise/exercises/exercises.component';
+import { ExerciseListComponent } from './exercise/exercise-list/exercise-list.component';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +49,10 @@ import { UserEditComponent } from "./user/user-edit/user-edit.component";
     CrudTableComponent,
     DeleteDialogComponent,
     UserEditComponent,
+    ExerciseAddComponent,
+    ExerciseViewComponent,
+    ExercisesComponent,
+    ExerciseListComponent
   ],
   imports: [
     BrowserModule,
