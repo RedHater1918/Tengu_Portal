@@ -1,16 +1,18 @@
-<div class="exercise-view">
+<div class="exercise-view" style="width: 100%;">
     <div class="exercise-block" style="flex: none; flex-direction: row">
       <button mat-fab color="primary">
         {{exercise.price}}
       </button>
-      <button *ngIf="userService.currentUser.role=='Administrator'" mat-fab color="primary" style="margin-left: 5px;"
-        (click)="edit(exercise.id)">
-        <mat-icon>edit</mat-icon>
-      </button>
     </div>
-    <div class="exercise-block" style="flex: 2">
+    <div class="exercise-block" style="flex: 5;">
       <h1>
         <a routerLink="/exercise/{{exercise.id}}" routerLinkActive="active">{{exercise.name}}</a>
       </h1>
+    </div>
+    <div class="exercise-block" style="flex: none; flex-direction: row">
+    <button [disabled]="userService.currentUser && userService.currentUser.role == 'READER'" mat-fab color="primary" style="float:right;"
+        (click)="edit(exercise.id)">
+        <mat-icon>edit</mat-icon>
+      </button>
     </div>
   </div>

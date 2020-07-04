@@ -13,7 +13,7 @@
       </div>
     </div>
     <div>
-        <textarea *ngIf="newExerciseForm.get('description')" formControlName="description" ngMaxlength=256 required></textarea>
+        <textarea *ngIf="newExerciseForm.get('description')" formControlName="description" ngMaxlength=256 style=" resize: none;" required></textarea>
     </div>
      <button class="submit-button" mat-fab color="primary" type="submit">
       <mat-icon>done</mat-icon>
