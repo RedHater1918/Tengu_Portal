@@ -16,11 +16,11 @@
     </button>
     <button type="button" mat-raised-button color="primary" style="width: 85%; margin: 10px;"
       (click)="navigate('/exercises')">
-      Exercises
+      <mat-icon>fitness_center</mat-icon>
     </button>
     <button [disabled]="userService.currentUser && userService.currentUser.role == 'READER'" type="button" mat-raised-button color="primary" style="width: 85%; margin: 10px;"
     (click)="navigate('/editor/exercise')">
-    Add exercise
+    +<mat-icon>fitness_center</mat-icon>
   </button>
     <user-view *ngIf="userService.currentUser"></user-view>
     <button [disabled]="userService.currentUser && (userService.currentUser.role == 'READER' || userService.currentUser.role == 'AUTHOR')" type="button" mat-raised-button color="primary" style="width: 85%; margin: 10px;"

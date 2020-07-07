@@ -1,9 +1,9 @@
 <div>
     <h1 *ngIf="exercise" style="display: inline;">{{exercise.name}}</h1>
     <br>
-    <div class="row"><span *ngIf="exercise" class="flex-row">Cost:{{exercise.price}}</span>
-    <button mat-flat-button color="primary" (click)="actionWithExercise(1)">Take</button>
-    <button mat-flat-button color="primary" (click)="actionWithExercise(0)">Done</button>
+    <div class="row"><span *ngIf="exercise" class="flex-row">Cost:{{exercise.price}}</span><br>
+    <button mat-flat-button color="primary" (click)="actionWithExercise(1)"><mat-icon>playlist_add</mat-icon></button>
+    <button mat-flat-button color="primary" (click)="actionWithExercise(0)"><mat-icon>done</mat-icon></button>
     </div>
     <textarea *ngIf="exercise" style="width: 500px; height: 500px; resize: none;" readonly="readonly">{{exercise.description}}</textarea>
   </div>

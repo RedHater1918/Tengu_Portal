@@ -57,6 +57,9 @@ export class ExerciseAddComponent implements OnInit {
   save(value) {
     let result = new Exercise();
     result.price = value.price;
+    this.userService.loadCurrentUserData(this.userService.currentUser.email);
+    result.authorId = this.userService.currentUser.id;
+    console.log(result.authorId)
     result.id = value.id;
     result.name = value.name;
     result.description = value.description;

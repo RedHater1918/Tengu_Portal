@@ -10,7 +10,7 @@
       </h1>
     </div>
     <div class="exercise-block" style="flex: none; flex-direction: row">
-    <button [disabled]="userService.currentUser && userService.currentUser.role == 'READER'" mat-fab color="primary" style="float:right;"
+    <button *ngIf="exercise.authorId == userService.currentUser.id" mat-fab color="primary" style="float:right;"
         (click)="edit(exercise.id)">
         <mat-icon>edit</mat-icon>
       </button>

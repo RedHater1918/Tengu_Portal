@@ -42,8 +42,17 @@ public class ExerciseController {
     }
 
     @PostMapping("/save")
-    public Exercise save(@RequestBody Exercise story){
-        return this.exerciseService.save(story);
+    public Exercise save(@RequestBody Exercise exercise){
+        if(exercise.getId()==null){
+            return this.exerciseService.save(exercise);
+        }else{
+           Exercise ex1 = this.exerciseService.findById(exercise.getId()).get();
+           if(!ex1.getAuthorId().equals(exercise.getAuthorId())){
+               return null;
+           }else{
+            return this.exerciseService.save(exercise);
+            }
+        }
     }
 
     @GetMapping("/getByStat/{userId}/{status}")
@@ -77,7 +86,6 @@ public class ExerciseController {
           user.setPoints(user.getPoints()+exercise.getPrice());
           this.userService.save(user);
         }
-//CHECK USER SCORES
         return new ResponseEntity<>(new ResponseMessage("Successfully!"), HttpStatus.OK);
     }
 }

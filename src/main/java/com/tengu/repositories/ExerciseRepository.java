@@ -13,6 +13,7 @@ public interface ExerciseRepository extends CrudRepository<Exercise, UUID> {
 
     @Query("SELECT s.id as id," +
             "    s.name as name," +
+            "    s.authorId as authorId," +
             "    s.description as description," +
             "    s.price as price " +
             "FROM Exercise s")
