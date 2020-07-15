@@ -12,7 +12,7 @@
     </button>
     <button [disabled]="userService.currentUser && userService.currentUser.role == 'READER'" type="button" mat-raised-button color="primary" style="width: 85%; margin: 10px;"
       (click)="navigate('/editor/story')">
-      + 
+      +<mat-icon>history_edu</mat-icon> 
     </button>
     <button type="button" mat-raised-button color="primary" style="width: 85%; margin: 10px;"
       (click)="navigate('/exercises')">

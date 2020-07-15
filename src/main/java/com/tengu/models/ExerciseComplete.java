@@ -15,12 +15,12 @@ import java.util.UUID;
 public class ExerciseComplete {
 
     public enum Status{
-        DONE, TAKEN;
+        DONE, TAKEN, NONE;
         public static Status getById(String id){
             for(Status e : values()) {
                 if(e.name().equalsIgnoreCase(id)) return e;
             }
-            return TAKEN;
+            return NONE;
         }
     };
 

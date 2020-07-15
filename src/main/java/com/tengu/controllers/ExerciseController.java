@@ -59,6 +59,7 @@ public class ExerciseController {
     public Iterable<ExerciseProjection> getListStatus(@PathVariable UUID userId, @PathVariable String status){
         return this.exerciseService.findByStatus(userId, status);
     }
+
     @GetMapping("/save/exerciseComp/{userId}/{exerciseId}/{status}")
     public ResponseEntity<?> saveExerciseComp(@PathVariable UUID userId, @PathVariable UUID exerciseId, @PathVariable String status){
         ExerciseComplete exerciseComplete = exerciseService.findByUserAndExercise(userId, exerciseId);
@@ -72,20 +73,39 @@ public class ExerciseController {
                     ExerciseComplete.Status.getById(status),
                     LocalDate.now()
             );
-        } else {
-            if(exerciseComplete.getStatus()== ExerciseComplete.Status.DONE){
-                return new ResponseEntity<>(new ResponseMessage("You already done this!"), HttpStatus.LOCKED);
-            } else if(exerciseComplete.getStatus()!=ExerciseComplete.Status.getById(status)){
-                exerciseComplete.setStatus(ExerciseComplete.Status.getById(status));
-            }else{
-                return new ResponseEntity<>(new ResponseMessage("You already have this status on this exercise!"), HttpStatus.LOCKED);
-            }
+        }else{
+            exerciseComplete.setStatus(ExerciseComplete.Status.getById(status));
         }
         this.exerciseService.saveCompleted(exerciseComplete);
-        if(exerciseComplete.getStatus()==ExerciseComplete.Status.DONE){
+        if(exerciseComplete.getStatus()==ExerciseComplete.Status.getById("DONE")){
           user.setPoints(user.getPoints()+exercise.getPrice());
           this.userService.save(user);
         }
         return new ResponseEntity<>(new ResponseMessage("Successfully!"), HttpStatus.OK);
+    }
+
+    @GetMapping("/getStatOfEx/{userId}/{exerciseId}")
+    public ExerciseComplete getStatus(@PathVariable UUID userId, @PathVariable UUID exerciseId){
+        ExerciseComplete ex = this.exerciseService.findByUserAndExercise(userId, exerciseId);
+       if(ex!=null){
+           return new ExerciseComplete(
+                   null,
+                   null,
+                   null,
+                   ex.getStatus(),
+                   null);
+       }else{
+           return new ExerciseComplete(
+                   null,
+                   null,
+                   null,
+                  ExerciseComplete.Status.NONE,
+                   null);
+       }
+    }
+    @DeleteMapping("/deleteEx/{userId}/{exerciseId}")
+    public ResponseEntity<?> deleteEx(@PathVariable UUID userId, @PathVariable UUID exerciseId){
+        this.exerciseService.deleteEx(userId, exerciseId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

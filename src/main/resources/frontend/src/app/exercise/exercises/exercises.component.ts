@@ -20,7 +20,7 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   public dataSource;
   @Input() exercieses: Exercise[];
-  status:number;
+  status:string;
   statuses:string[]=["Сделано","Взято","Все"];
   constructor(
     private userService: UserService,
@@ -30,6 +30,11 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
+    if (this.route.params["value"]["status"]){ 
+      this.status = this.statuses[this.route.params["value"]["status"]];
+    }else{
+      this.status = "Все";
+    }
   }
 
   ngAfterViewInit() {
@@ -58,8 +63,7 @@ export class ExercisesComponent implements OnInit, AfterViewInit {
 
   changeStatus(status){
     if(this.statuses.indexOf(status)!=-1 && this.statuses.indexOf(status)!=2){
-    this.router.navigateByUrl(`/exercises/${this.statuses.indexOf(status)}`);
-    this.ngAfterViewInit();
+    this.router.navigateByUrl(`/exercises/${this.statuses.indexOf(status)}`).then(()=>(this.ngAfterViewInit())); 
     }else{
       this.router.navigateByUrl(`/exercises`);
     }

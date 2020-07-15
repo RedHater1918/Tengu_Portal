@@ -36,6 +36,12 @@ public class ExerciseServiceImpl implements ExerciseService {
         return this.exerciseRepository.findById(id);
     }
 
+    @Override
+    public void deleteEx(UUID userId, UUID exerciseId) {
+        ExerciseComplete exerciseComplete = findByUserAndExercise(userId, exerciseId);
+        this.exerciseCompleteRepository.delete(exerciseComplete);
+    }
+
     @Transactional
     @Override
     public Iterable<ExerciseProjection> findByStatus(UUID userId, String status) {

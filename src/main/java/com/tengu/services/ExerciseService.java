@@ -10,6 +10,7 @@ import java.util.UUID;
 public interface ExerciseService {
     Iterable<ExerciseProjection> findAll();
     Optional<Exercise> findById(UUID id);
+    void deleteEx(UUID userId, UUID exerciseId);
     Iterable<ExerciseProjection> findByStatus(UUID userId,String statusId);
     ExerciseComplete findByUserAndExercise(UUID userId,UUID exerciseId);
     Exercise save(Exercise exercise);

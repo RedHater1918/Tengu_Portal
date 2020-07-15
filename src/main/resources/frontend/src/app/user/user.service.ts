@@ -49,17 +49,29 @@ export class UserService {
     return this.http.get(`/api/operations/rate/${this.currentUser.id}/${storyId}/${value}`
     );
   }
+
   rateStoryPrice(storyId,value){
     console.log(storyId, value);
     return this.http.get(`/api/stories/save/priceRate/${this.currentUser.id}/${storyId}/${value}`);
   }
+
   actWithExrcise(exerciseId:string, status:number){
     console.log(this.currentUser.id,exerciseId,status);
     return this.http.get(`/api/exercise/save/exerciseComp/${this.currentUser.id}/${exerciseId}/${this.status[status]}`);
   }
+  
   getExerciseByStatus(status){
     return this.http.get(`/api/exercise/getByStat/${this.currentUser.id}/${this.status[status]}`);
   }
+
+  deleteEx(exerciseId){
+    return this.http.delete(`/api/exercise/deleteEx/${this.currentUser.id}/${exerciseId}`)
+  }
+
+  getStatusOfEx(exerciseId){
+    return this.http.get(`/api/exercise/getStatOfEx/${this.currentUser.id}/${exerciseId}`)
+  }
+
   loadUsers() {
     return this.http.get("/api/users/");
   }
@@ -67,6 +79,7 @@ export class UserService {
   getUser(id) {
     return this.http.get(`/api/users/get/${id}`);
   }
+  
   saveUser(user: User) {
     return this.http.post(`/api/users/save`, user);
   }

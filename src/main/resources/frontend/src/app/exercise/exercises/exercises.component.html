@@ -1,10 +1,8 @@
 
 <div style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
-  <select [(ngModel)]="status">
-    <option value=null>Выберите фильтр статуса</option> 
+  <select [(ngModel)]="status" (change)="changeStatus(status)">
   <option *ngFor="let st of statuses" (value)="st">{{st}}</option>
   </select>
-  <button (click)="changeStatus(status)">Применить</button>
 </div>
 <mat-table [dataSource]="dataSource" style="width:100%;">
     <ng-container matColumnDef="main">
@@ -12,7 +10,7 @@
         Main
       </mat-header-cell>
       <mat-cell *matCellDef="let operator">
-        <app-exercise-list [exercise]="operator"></app-exercise-list>
+        <app-exercise-list [exercise]="operator" [st]="status"></app-exercise-list>
       </mat-cell>
     </ng-container>
   

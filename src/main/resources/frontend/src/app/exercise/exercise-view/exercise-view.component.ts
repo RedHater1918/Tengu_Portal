@@ -12,7 +12,7 @@ import { Exercise } from '../exercise.model';
 export class ExerciseViewComponent implements OnInit {
   
   exercise:Exercise;
-
+  status:string;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -24,11 +24,25 @@ export class ExerciseViewComponent implements OnInit {
       .subscribe((value: any) => {
         this.exercise = value;
       });
+      this.userService.getStatusOfEx(this.route.params["value"]["id"]).subscribe(
+        (s:any)=>{
+          this.status = s.status;
+        }
+      );
   }
   ngOnInit() {
   }
 
   actionWithExercise(status){
-    this.userService.actWithExrcise(this.exercise.id,status).subscribe();
+   
+    this.userService.actWithExrcise(this.exercise.id,status).subscribe(s=>
+      {
+        this.userService.loadCurrentUserData(this.userService.currentUser.email);
+        if(status == 0){
+          this.status = 'DONE';
+        }else{
+          this.status = 'TAKEN';
+        }
+      });
   }
 }

@@ -1,4 +1,4 @@
-<div class="exercise-view" style="width: 100%;">
+<div *ngIf="!deleted" class="exercise-view" style="width: 100%;">
     <div class="exercise-block" style="flex: none; flex-direction: row">
       <button mat-fab color="primary">
         {{exercise.price}}
@@ -14,5 +14,11 @@
         (click)="edit(exercise.id)">
         <mat-icon>edit</mat-icon>
       </button>
+      <button *ngIf="st !=  'Взято'" mat-flat-button color="primary" (click)="actionWithExercise(1)"><mat-icon>playlist_add</mat-icon></button>
+      <button *ngIf="st !=  'Сделано'" mat-flat-button color="primary" (click)="actionWithExercise(0)"><mat-icon>done</mat-icon></button>
+      <button *ngIf="st !=  'Все'" mat-flat-button color="primary" (click)="deleteExFromList()"><mat-icon>delete</mat-icon></button>
     </div>
+  </div>
+  <div *ngIf="deleted">
+    <span>Row has deleted</span>
   </div>
